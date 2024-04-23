@@ -1,0 +1,13 @@
+{
+    "name": "Progressive Web App",
+    "short_name": "PWA",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "orientation": "portrait-primary",
+    "icons": [ {
+        "src": "/images/TypfoutLogo.png",
+        "type": "image/png", "sizes": "800x800"
+    } ]
+}
