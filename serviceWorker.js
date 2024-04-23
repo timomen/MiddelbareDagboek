@@ -1,8 +1,7 @@
 const staticPwa = "PWA-APP-SITE"
 const assets = [
     "/",
-    "/index.html",
-    "/images/TypfoutLogo.jpg"
+    "/index.html"
 ]
 
 self.addEventListener("install", installEvent => {
