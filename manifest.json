@@ -7,7 +7,7 @@
     "theme_color": "#ffffff",
     "orientation": "portrait-primary",
     "icons": [ {
-        "src": "https://github.com/h5bp/html5-boilerplate/blob/main/src/icon.png?raw=true",
+        "src": "icon.png",
         "type": "image/png", "sizes": "192x192"
     } ]
 }
