@@ -62,3 +62,7 @@ body {
 #page-home {
     display: block;
 }
+
+#nav-home {
+    background-color: #212529;
+}
