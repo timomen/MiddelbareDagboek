@@ -34,15 +34,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px;
+    margin: 7px;
     text-decoration: none;
+    user-select: none;
+    cursor: pointer;
     color: #e9ecef;
+    border-radius: 4px;
+    padding-left: 2rem; padding-right: 2rem;
+}
+
+.bloc-icon:hover {
+    background-color: #212529;
 }
 
 .bloc-icon span {
     width: 30px;
     font-size: 30px;
 }
+
+/* default pages */
 
 #page-new, #page-home, #page-calendar {
     display: none;
