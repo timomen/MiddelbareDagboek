@@ -1,0 +1,54 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-family: "Rubik", sans-serif;
+}
+
+#page-header {
+    margin: 1rem 0px;
+    text-align: center;
+    user-select: none;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* NAV */
+.mobile-nav {
+    background: #343a40;
+    position: fixed;
+    bottom: 0;
+    height: 65px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.bloc-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    text-decoration: none;
+    color: #e9ecef;
+}
+
+.bloc-icon span {
+    width: 30px;
+    font-size: 30px;
+}
+
+#page-new, #page-home, #page-calendar {
+    display: none;
+    transition: all 300ms ease-in-out;
+}
+
+#page-home {
+    display: block;
+}
