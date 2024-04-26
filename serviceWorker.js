@@ -1,8 +1,10 @@
-const staticPwa = "PWA-APP-SITE";
+const staticPwa = "MD-APP-SITE";
 const assets = [
   "/",
   "/index.html",
-  "/icon.png"
+  "/icon.png",
+  "/main.js",
+  "/style.css"
 ];
 
 self.addEventListener("install", installEvent => {
