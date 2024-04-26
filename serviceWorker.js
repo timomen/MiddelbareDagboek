@@ -27,7 +27,7 @@ self.addEventListener("fetch", fetchEvent => {
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker
-      .register("/serviceWorker.js")
+      .register("https://timomen.github.io/MiddelbareDagboek/serviceWorker.js")
       .then(res => console.log("Service worker registered"))
       .catch(err => console.error("Service worker not registered:", err));
   });
