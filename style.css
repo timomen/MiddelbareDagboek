@@ -66,6 +66,11 @@ body {
     width: 92%;
 }
 
+#page-new-peopleinput {
+    margin-left: 4%;
+    width: 10ch;
+}
+
 /* default pages */
 
 #page-new,
@@ -74,8 +79,8 @@ body {
     display: none;
     transition: all 300ms ease-in-out;
 }
-#page-home { display: block; }
-#nav-home { background-color: #212529; }
+#page-new { display: block; }
+#nav-new { background-color: #212529; }
 
 output {
     position: absolute;
