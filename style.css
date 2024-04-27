@@ -79,8 +79,8 @@ body {
     display: none;
     transition: all 300ms ease-in-out;
 }
-#page-new { display: block; }
-#nav-new { background-color: #212529; }
+#page-home { display: block; }
+#nav-home { background-color: #212529; }
 
 output {
     position: absolute;
