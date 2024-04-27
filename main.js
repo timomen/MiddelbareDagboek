@@ -24,3 +24,17 @@ document.getElementById("nav-calendar").addEventListener("click", function() {
     document.getElementById("page-calendar").style.display = "block";
     document.getElementById("page-new").style.display = "none";
 });
+
+// page 'new'
+
+// people
+document.getElementById("page-new-peopleinput").addEventListener("keypress", function(e) {
+    if (e.key == "Enter") {
+        var newbadge = document.createElement("span");
+        newbadge.className = "badge text-bg-light mx-1";
+        newbadge.innerText = document.getElementById("page-new-peopleinput").value;
+        document.getElementById("page-new-people").appendChild(newbadge);
+        document.getElementById("page-new-people").style.marginLeft = "4%";
+        document.getElementById("page-new-peopleinput").value = "";
+    }
+});
