@@ -25,9 +25,9 @@
 
     <main>
         <div id="page-new">
-            <h1 id="page-header">New</h3>
+            <h1 id="page-header">New</h1>
             <label for="page-new-textarea" class="form-label full-width">Beschrijf je dag:</label>
-            <textarea class="form-control" name="page-new-textarea" id="page-new-textarea" rows="5" cols="5"></textarea><br>
+            <textarea class="form-control full-width" id="page-new-textarea" name="page-new-textarea" rows="5" cols="5"></textarea><br>
             <label for="page-new-range" class="form-label full-width">Hoe 'bijzonder' was het?</label>
             <input type="range" min="0" max="5" step="0.1" id="page-new-range" class="form-range full-width" style="width: 88%; margin-left: 4%; right: 8%; margin-right: 2px;" id="new-page-range" oninput="this.nextElementSibling.value = this.value;">
             <output>2.5</output><br>
@@ -40,15 +40,65 @@
             <button class="btn btn-primary position-absolute full-width" style="bottom: 65px; margin-bottom: 1rem;">Submit</button>
         </div>
         <div id="page-home">
-            <h1 id="page-header">Home</h3>
+            <h1 id="page-header">Home</h1>
+            <div id="page-home-content">
+                <h1 class="fw-normal" id="page-new-greeting">Goededag, naam</h1>
+
+                <div id="page-home-overview">
+                    <p class="mb-0 pt-1">Het is vandaag</p>
+                    <h1 id="page-home-date" class="fw-bolder">Maandag 14 Februari</h1>
+                    <h6 class="fw-normal mb-4" id="page-home-dynamictext">Over 23 minuten moet je gaan!</h6>
+
+                    <div id="page-home-weekstats" class="row">
+                        <div id="page-home-weekstats-gembijz" class="col">
+                            <h1 class="fw-bold mb-0">4.8</h1>
+                            <p>Gemmiddelded bijzonderheid deze week</p>
+                        </div>
+                        <div id="page-home-weekstats-msnontmoet" class="col">
+                            <h1 class="fw-bold mb-0">9</h1>
+                            <p>Mensen ontmoet deze week</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-home-fillinreminder" class="mt-3">
+                    <h4>Je heb je dag nog niet ingevuld!</h4>
+                    <button class="form-control btn btn-success shadow-lg" id="page-home-fillinreminder-button">Vul vandaag in</button>
+                </div>
+
+                <div id="page-home-quickactions" class="row mt-4">
+                    <div class="col p-0 w-auto page-home-quickactiondiv">
+                        <button class="btn page-home-quickactionbutton">
+                            <span class="material-symbols-outlined page-home-quickactionbutton-icon">patient_list</span>
+                            <h4>Personen</h4>
+                        </button>
+                    </div>
+                    <div class="col p-0 w-auto page-home-quickactiondiv">
+                        <button class="btn page-home-quickactionbutton">
+                            <span class="material-symbols-outlined page-home-quickactionbutton-icon">patient_list</span>
+                            <h4>Personen</h4>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="page-calendar">
-            <h1 id="page-header">Calendar</h3>
+            <h1 id="page-header">Calendar</h1>
+            <div class="btn-group" id="page-calendar-btngroup" role="group">
+                <button class="btn btn-primary page-calendar-btngroup-edgebutton">Dag</button>
+                <button class="btn btn-outline-primary">Week</button>
+                <button class="btn btn-outline-primary page-calendar-btngroup-edgebutton">Maand</button>
+            </div>
+
+            <div id="page-calendar-day">
+                <h2 id="page-calendar-day-date">11 November 2010</h2>
+                <p id="page-calender-day-content">Vandaag was het heel leuk er was een gratis film op tv te zien en de graphics waren zo goed! of het was cgi. Als het cgi was ga ik de tv bellen en ze confronteren!</p>
+                <div id="page-calendar-day-people"></div>
+                <div id="page-calendar-day-rating">rating</div>
+            </div>
         </div>
     </main>
 
-    <script src="https://timomen.github.io/MiddelbareDagboek/serviceWorker.js"></script>
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
 </html>
