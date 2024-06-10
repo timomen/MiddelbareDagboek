@@ -25,6 +25,13 @@ body {
     right: 4%;
 }
 
+.pagetricon {
+    width: 2rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
 /* NAV */
 .mobile-nav {
     background: #343a40;
@@ -64,6 +71,15 @@ body {
 #page-new-peopleinput {
     margin-left: 4%;
     width: 10ch;
+}
+
+output {
+    position: absolute;
+    padding-left: 1%;
+}
+
+.form-label {
+    margin-bottom: 1px;
 }
 
 /* 'Home' page */
@@ -148,11 +164,27 @@ body {
     border-radius: 1rem;
 }
 
+#page-calendar-week,
+#page-calendar-month,
+#page-calendar-alltime {
+    display: none;
+}
+
+/* 'Settings' page */
+
+#page-settings-settingcontent label {
+    padding-left: 0.5rem;
+}
+#page-settings-settingcontent input {
+    margin-bottom: 1rem;
+}
+
 /* default pages */
 
 #page-new,
 #page-home,
-#page-calendar {
+#page-calendar,
+#page-settings {
     display: none;
 }
 
@@ -162,13 +194,4 @@ body {
 
 #nav-home {
     background-color: #212529;
-}
-
-output {
-    position: absolute;
-    padding-left: 1%;
-}
-
-.form-label {
-    margin-bottom: 1px;
 }
