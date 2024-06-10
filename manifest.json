@@ -7,7 +7,7 @@
     "theme_color": "#212529",
     "orientation": "portrait-primary",
     "icons": [ {
-        "src": "icon.png",
+        "src": "images/icon.png",
         "type": "image/png", "sizes": "192x192"
     } ]
 }
