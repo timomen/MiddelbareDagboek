@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl" translate="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Middelbare Dagboek</title>
-    <link rel="manifest" href="manifest.json">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <!-- Bootstrap -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-bs-theme="dark">
+
+<body data-bs-theme="dark" style="display: none;">
     <nav id="mobile-nav" class="mobile-nav">
         <a class="bloc-icon" id="nav-new">
             <span class="material-symbols-outlined">add_circle</span>
@@ -34,20 +38,20 @@
                 style="width: 88%; margin-left: 4%; right: 8%; margin-right: 2px;" id="new-page-range"
                 oninput="this.nextElementSibling.value = this.value;">
             <output>2.5</output><br>
+            <!-- TODO: autocorrect namen met <datalist> -->
             <label for="page-new-peopleinput" class="form-label full-width">Vandaag veel contact gehad met:</label>
             <div class="d-flex mt-2">
                 <div id="page-new-people"></div>
                 <input type="text" id="page-new-peopleinput" class="form-control form-control-sm">
             </div>
 
-            <button class="btn btn-primary position-absolute full-width"
-                style="bottom: 65px; margin-bottom: 1rem;">Submit</button>
+            <button id="page-new-submitbtn" class="btn btn-primary position-absolute full-width" style="bottom: 65px; margin-bottom: 1rem;">Submit</button>
         </div>
         <div id="page-home">
             <h1 id="page-header">Home</h1>
             <img src="images/tune.svg" class="pagetricon" id="page-home-tuneicon" alt="instellingen">
             <div id="page-home-content">
-                <h1 class="fw-normal" id="page-new-greeting">Goededag, naam</h1>
+                <h1 class="fw-normal" id="page-home-greeting">Goededag, naam</h1>
 
                 <div id="page-home-overview">
                     <p class="mb-0 pt-1">Het is vandaag</p>
@@ -122,7 +126,7 @@
                 <input type="text" id="page-settings-name" class="form-control" placeholder="Naam...">
                 <label for="page-settings-timetoschool">Tijd naar school:</label>
                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#page-settings-timesmodal" id="page-settings-timetoschool">Open</button>
-                <div class="modal fade modal-dialog modal-dialog-centered modal-dialog-scrollable" id="page-settings-timesmodal" tabindex="-1" aria-labelledby="page-settings-timetoschool" aria-hidden="true">
+                <div class="modal fade" id="page-settings-timesmodal" tabindex="-1" aria-labelledby="page-settings-timetoschool" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -131,23 +135,28 @@
                             </div>
                             <div class="modal-body" id="page-settings-timesmodal-body">
                                 <label for="page-settings-timesmodal-body-monday">Maandag:</label>
-                                <input type="time" class="form-control" id="page-settings-timesmodal-body-monday">
+                                <input type="time" class="form-control page-settings-timesmodal-input" id="page-settings-timesmodal-body-monday">
                                 <label for="page-settings-timesmodal-body-tuesday">Dinsdag:</label>
-                                <input type="time" class="form-control" id="page-settings-timesmodal-body-tuesday">
+                                <input type="time" class="form-control page-settings-timesmodal-input" id="page-settings-timesmodal-body-tuesday">
                                 <label for="page-settings-timesmodal-body-wednesday">Woensdag:</label>
-                                <input type="time" class="form-control" id="page-settings-timesmodal-body-wednesday">
+                                <input type="time" class="form-control page-settings-timesmodal-input" id="page-settings-timesmodal-body-wednesday">
                                 <label for="page-settings-timesmodal-body-thursday">Donderdag:</label>
-                                <input type="time" class="form-control" id="page-settings-timesmodal-body-thursday">
+                                <input type="time" class="form-control page-settings-timesmodal-input" id="page-settings-timesmodal-body-thursday">
                                 <label for="page-settings-timesmodal-body-friday">Vrijdag:</label>
-                                <input type="time" class="form-control" id="page-settings-timesmodal-body-friday">
+                                <input type="time" class="form-control page-settings-timesmodal-input" id="page-settings-timesmodal-body-friday">
                             </div>
                         </div>
                     </div>
-                </div>
+                </div><br>
+                <h2 class="mt-5">Devtools</h2>
+                <button class="btn btn-danger" onclick="clearlocalstorage()">Clear Localstorage</button>
             </div>
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> <!-- Bootstrap JS -->
     <script src="main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script> chart.js -->
+</body>
+
 </html>
