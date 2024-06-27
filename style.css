@@ -32,7 +32,13 @@ body {
     top: 1rem;
 }
 
-/* NAV */
+.vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+
+/* nav */
 .mobile-nav {
     background: #343a40;
     position: fixed;
@@ -177,6 +183,11 @@ output {
 }
 #page-settings-settingcontent input {
     margin-bottom: 1rem;
+}
+.modal-dialog {
+    width: 80vw;
+    height: 75vh;
+    margin: 0 auto;
 }
 
 /* default pages */
