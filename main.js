@@ -1,7 +1,7 @@
 // general functionality 
 window.addEventListener("load", function () {
 	document.body.style.display = "inherit";
-	loadData(); // Verplaats loadData naar de load event listener
+	loadData();
 });
 
 function UpdateDate() {
@@ -12,11 +12,13 @@ function UpdateDate() {
 function writeData(mainContent_wd, peculiarity_wd, people_wd) {
 	let todaydate = UpdateDate();
 
-	console.log(people_wd);
-
-	let towrite_maincontent = JSON.parse(localStorage.getItem("maincontent")) || {};
-	let towrite_peculiarity = JSON.parse(localStorage.getItem("peculiarity")) || {};
-	let towrite_people = JSON.parse(localStorage.getItem("people")) || {};
+	if (localStorage.getItem("maincontent") !== '') {
+		var towrite_maincontent = JSON.parse(localStorage.getItem("maincontent")) || {};
+		var towrite_peculiarity = JSON.parse(localStorage.getItem("peculiarity")) || {};
+		var towrite_people = JSON.parse(localStorage.getItem("people")) || {};
+	} else {
+		towrite_maincontent = {}; towrite_peculiarity = {}; towrite_people = {};
+	}
 
 	towrite_maincontent[todaydate] = mainContent_wd;
 	towrite_peculiarity[todaydate] = peculiarity_wd;
@@ -31,6 +33,8 @@ function readData(part) {
 	return JSON.parse(localStorage.getItem(part));
 }
 
+addedpeople = false;
+
 function loadData() {
 	// page 'home'
 	let date = new Date();
@@ -40,7 +44,6 @@ function loadData() {
 	);
 
 	// page 'settings'
-	// TODO: set values of timetoschool
 	document.getElementById("page-settings-name").value = localStorage.getItem("name");
 	let timetoschool = JSON.parse(localStorage.getItem("timetoschool")) || [];
 	for (let i = 0; i < 5; i++) {
@@ -48,11 +51,34 @@ function loadData() {
 	}
 
 	// page 'new'
-	if (localStorage.getItem("maincontent") !== "") {
+	if (JSON.parse(localStorage.getItem("maincontent"))[UpdateDate()] !== undefined) {
 		let maincontentParsed = JSON.parse(localStorage.getItem("maincontent")) || {};
+		let peculiarityParsed = JSON.parse(localStorage.getItem("peculiarity")) || {};
 		document.getElementById("page-new-textarea").value = maincontentParsed[UpdateDate()] || "";
+		document.getElementById("page-new-range").value = peculiarityParsed[UpdateDate()] || "";
+		document.getElementById("page-new-range").nextElementSibling.value = peculiarityParsed[UpdateDate()] || "";
+		if (!addedpeople) {
+			addedpeople = true;
+			for (let i = 0; i < JSON.parse(localStorage.getItem("people"))[UpdateDate()].length; i++) {
+				addNewPerson(JSON.parse(localStorage.getItem("people"))[UpdateDate()][i]);
+			}
+		}	
 	} else {
 		document.getElementById("page-new-textarea").value = "";
+	}
+
+	// page 'calendar'
+
+	document.getElementById("page-settings-debuglog").innerText = `date: ${UpdateDate()}\ncontentstoday: ${JSON.parse(localStorage.getItem("maincontent"))[UpdateDate()]}\npeculiarity: ${localStorage.getItem("peculiarity")}\npeople: ${localStorage.getItem("people")}`;
+}
+
+// it works, dont touch it
+var allpeople = [];
+for (i in JSON.parse(localStorage.getItem("people"))) {
+	for (let j = 0; j < JSON.parse(localStorage.getItem("people"))[i].length; j++) {
+		if (!allpeople.includes(JSON.parse(localStorage.getItem("people"))[i][j])) {
+			allpeople.push(JSON.parse(localStorage.getItem("people"))[i][j]);
+		}
 	}
 }
 
@@ -68,6 +94,7 @@ function changeTab(navclicked) {
 			document.getElementById("page" + navclicked.parentElement.children[i].id.slice(3)).style.display = "none";
 		}
 	}
+	loadData();
 }
 
 for (let i = 0; i < document.getElementById("mobile-nav").children.length; i++) {
@@ -78,20 +105,29 @@ for (let i = 0; i < document.getElementById("mobile-nav").children.length; i++) 
 
 let enteredPeopleToday = [];
 
+function addNewPerson(name) {
+	let newbadge = document.createElement("span");
+	newbadge.className = "badge text-bg-light mx-1";
+	newbadge.innerText = name;
+	enteredPeopleToday.push(newbadge.innerText);
+	document.getElementById("page-new-people").appendChild(newbadge);
+	document.getElementById("page-new-people").style.marginLeft = "4%";
+	document.getElementById("page-new-peopleinput").value = "";
+}
+
 document.getElementById("page-new-peopleinput").addEventListener("keypress", function (e) {
 	if (e.key == "Enter") {
-		let newbadge = document.createElement("span");
-		newbadge.className = "badge text-bg-light mx-1";
-		newbadge.innerText = document.getElementById("page-new-peopleinput").value;
-		enteredPeopleToday.push(newbadge.innerText);
-		document.getElementById("page-new-people").appendChild(newbadge);
-		document.getElementById("page-new-people").style.marginLeft = "4%";
-		document.getElementById("page-new-peopleinput").value = "";
+		addNewPerson(document.getElementById("page-new-peopleinput").value)
 	}
 });
 
+for (let i in allpeople) {
+	const datalistitem = document.createElement("option");
+	datalistitem.value = allpeople[i];
+	document.getElementById("page-new-peopleinputdatalist").appendChild(datalistitem);
+}
+
 document.getElementById("page-new-submitbtn").addEventListener("click", function () {
-	console.log(enteredPeopleToday);
 	writeData(document.getElementById("page-new-textarea").value, parseFloat(document.getElementById("page-new-range").value), enteredPeopleToday);
 });
 
@@ -144,5 +180,5 @@ document.getElementById("page-settings-closeicon").addEventListener("click", fun
 		TimetoschoolLocal[i] = document.getElementsByClassName("page-settings-timesmodal-input")[i].value;
 	}
 	localStorage.setItem("timetoschool", JSON.stringify(TimetoschoolLocal));
-	loadData(); // Zorg ervoor dat loadData niet zichzelf indirect aanroept
+	loadData();
 });
